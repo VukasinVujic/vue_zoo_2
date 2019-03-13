@@ -13,7 +13,7 @@
 
 <td> {{animal.sort}} </td>
 <td> {{animal.name}} </td>
-<td> {{animal.dateOfBirth}} </td>
+<td> {{animal.dateOfBirth ? animal.dateOfBirth : "Nepoznat"}} </td>
 
 </tr>
 
@@ -48,7 +48,7 @@ export default {
         {
           sort: "guster",
           name: "mekani",
-          dateOfBirth: "12.02.2002"
+          dateOfBirth: ""
         },
         {
           sort: "slon",
