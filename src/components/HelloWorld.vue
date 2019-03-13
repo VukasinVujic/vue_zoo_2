@@ -7,13 +7,15 @@
   <th> Sort </th>
   <th> Name </th>
   <th> Date of birth  </th>
+  <th>Removing items</th>
 </tr>
 
-<tr v-for="animal in animalList" :key="animal.name">
+<tr v-for="(animal,index) in animalList" :key="animal.name">
 
 <td> {{animal.sort}} </td>
 <td> {{animal.name}} </td>
 <td> {{animal.dateOfBirth ? animal.dateOfBirth : "Nepoznat"}} </td>
+<td> <button @click="removeItem(index)"> remove </button></td>
 
 </tr>
 
@@ -57,6 +59,11 @@ export default {
         },
       ]
     };
+  },
+  methods: {
+    removeItem(index){
+      this.animalList.splice(index,1);
+    }
   }
 
 }
