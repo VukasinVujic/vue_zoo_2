@@ -16,6 +16,7 @@
 <td> {{animal.name}} </td>
 <td> {{animal.dateOfBirth ? animal.dateOfBirth : "Nepoznat"}} </td>
 <td> <button @click="removeItem(index)"> remove </button></td>
+<td> <button @click="moveToTheTop(index)"> to the top </button></td>
 
 </tr>
 
@@ -63,6 +64,11 @@ export default {
   methods: {
     removeItem(index){
       this.animalList.splice(index,1);
+    },
+    moveToTheTop(index){
+      let aaa = this.animalList[index];
+      this.animalList.splice(index,1);
+      this.animalList.unshift(aaa);
     }
   }
 
