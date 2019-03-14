@@ -46,6 +46,23 @@
 </tr>
 
 </table>
+
+<table>
+
+<tr>
+  <th>sektori</th>
+</tr>
+
+<tr v-for="sektor in sektorList" :key="sektor">
+  <td> {{sektor}} </td>
+    <button @click="seeAllAnimals(sektor)">vidi listu zivotinja</button>
+
+</tr>
+
+
+</table>
+
+
 </div>
 
 
@@ -105,6 +122,16 @@ export default {
     },
     addAnimal(animal){
       this.animalList.push({...this.animal});
+    },
+    seeAllAnimals(sektor){
+      let aaa ="";
+      this.animalList.forEach(element => {
+        if(element.sektor === sektor){
+          aaa+=element.name + " ";
+        }
+      });
+      
+      alert(`Imena zivotinja odabrane kategorije: ` + aaa )
     }
   }
 
