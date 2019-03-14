@@ -1,8 +1,32 @@
 <template>
 
 <div>
-<table>
 
+  <form v-on:submit.prevent="addAnimal()">
+  <label for="sort" >sort:  </label>
+  <input v-model="animal.sort" type="text" name="sort" ><br>
+
+  <label for="name">name:  </label>
+  <input v-model="animal.name" type="text" name="name"><br>
+
+  <label for="dateOfBirth"> Date Of Birth:  </label>
+  <input v-model="animal.dateOfBirth" type="text" name="dateOfBirth"><br><br>
+
+  <button type="submit"> add animal</button> 
+
+    <label for="sektor">sektor  </label>
+    <select v-model="animal.sektor">
+      <option v-for="sektor in sektorList"  :key="sektor">
+        {{sektor}}
+      </option>
+
+    </select>
+
+
+  </form>
+ <br>  <br> 
+
+<table>
 <tr>
   <th> Sort </th>
   <th> Name </th>
@@ -15,6 +39,7 @@
 <td> {{animal.sort}} </td>
 <td> {{animal.name}} </td>
 <td> {{animal.dateOfBirth ? animal.dateOfBirth : "Nepoznat"}} </td>
+<td> {{animal.sektor ? animal.sektor : "Nepoznat"}} </td>
 <td> <button @click="removeItem(index)"> remove </button></td>
 <td> <button @click="moveToTheTop(index)"> to the top </button></td>
 
@@ -57,8 +82,16 @@ export default {
           sort: "slon",
           name: "malecki",
           dateOfBirth: "12.02.2007"
-        },
-      ]
+        }
+      ],
+    animal: {
+      sort: "",
+      name: "",
+      dateOfBirth: "",
+      sektor: ""
+    },
+    sektorList: ['ptice', 'gmizavci', 'sisari', 'insekti']
+
     };
   },
   methods: {
@@ -69,6 +102,9 @@ export default {
       let aaa = this.animalList[index];
       this.animalList.splice(index,1);
       this.animalList.unshift(aaa);
+    },
+    addAnimal(animal){
+      this.animalList.push({...this.animal});
     }
   }
 
